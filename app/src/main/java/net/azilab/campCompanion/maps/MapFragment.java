@@ -3,6 +3,7 @@ package net.azilab.campCompanion.maps;
 import android.Manifest;
 import android.app.Activity;
 import android.content.pm.PackageManager;
+import android.view.View;
 
 import androidx.core.app.ActivityCompat;
 
@@ -16,10 +17,9 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import net.azilab.campCompanion.MainActivity;
 
-public class MyMapFragment extends SupportMapFragment implements OnMapReadyCallback {
+public class MapFragment extends SupportMapFragment implements OnMapReadyCallback {
     //ELEMENTS
     private GoogleMap googleMap;
-    private Activity MainActivity;
 
     //ATTRIBUTES
     private final int MAX_ZOOM = 5;
@@ -27,7 +27,7 @@ public class MyMapFragment extends SupportMapFragment implements OnMapReadyCallb
             new LatLng(41.2632185, -5.4534286),
             new LatLng(51.268318, 9.8678344));
 
-    public MyMapFragment() {
+    public MapFragment() {
         getMapAsync(this);
     }
 
@@ -39,13 +39,30 @@ public class MyMapFragment extends SupportMapFragment implements OnMapReadyCallb
         this.googleMap.setMinZoomPreference(MAX_ZOOM);
         this.googleMap.setLatLngBoundsForCameraTarget(FRANCE);
 
+        //Disable map button
+        this.googleMap.getUiSettings().setMapToolbarEnabled(false);
+
+        //Set camera centered on france
         this.googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(FRANCE.getCenter(), 5));
 
-        this.googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+        //Will send a request to backend each time camera is moved
+        this.googleMap.setOnCameraMoveListener(new GoogleMap.OnCameraMoveListener() {
             @Override
-            public void onMapClick(LatLng latLng) {
-
+            public void onCameraMove() {
+                //TODO: Implement request with spots contained on camera boundaries
             }
         });
     }
+
+    public void addPointOnMap(double latitude, double longitude, String title) {
+        if(this.googleMap != null) {
+            LatLng markerPosition = new LatLng(latitude, longitude);
+            MarkerOptions newMarker = new MarkerOptions();
+            newMarker.position(markerPosition);
+            newMarker.title(title);
+            this.googleMap.addMarker(newMarker);
+        }
+    }
+
+
 }
