@@ -1,17 +1,30 @@
 package net.azilab.campCompanion.maps;
 
+import android.Manifest;
+import android.app.Activity;
+import android.content.pm.PackageManager;
+
+import androidx.core.app.ActivityCompat;
+
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import net.azilab.campCompanion.MainActivity;
+
 public class MyMapFragment extends SupportMapFragment implements OnMapReadyCallback {
-
+    //ELEMENTS
     private GoogleMap googleMap;
+    private Activity MainActivity;
 
-    public MyMapFragment()  {
+    //ATTRIBUTES
+    private final int MAX_ZOOM = 5;
+
+    public MyMapFragment() {
         getMapAsync(this);
     }
 
@@ -20,22 +33,21 @@ public class MyMapFragment extends SupportMapFragment implements OnMapReadyCallb
         this.googleMap = gmap;
 
         // Set default position
-        LatLng vietnam = new LatLng(43.599781, 1.440247);
-        this.googleMap.addMarker(new MarkerOptions().position(vietnam).title("MyPosition"));
-        this.googleMap.moveCamera(CameraUpdateFactory.newLatLng(vietnam));
+        LatLngBounds france = new LatLngBounds(
+                new LatLng(41.2632185, -5.4534286),
+                new LatLng(51.268318, 9.8678344));
+
+        this.googleMap.setMinZoomPreference(MAX_ZOOM);
+        this.googleMap.setLatLngBoundsForCameraTarget(france);
+
+        this.googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(france.getCenter(), 5));
+
+
 
         this.googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng latLng) {
-                MarkerOptions markerOptions = new MarkerOptions();
-                markerOptions.position(latLng);
-                markerOptions.title(latLng.latitude + " : "+ latLng.longitude);
-                // Clear previously click position.
-                googleMap.clear();
-                // Zoom the Marker
-                googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10));
-                // Add Marker on Map
-                googleMap.addMarker(markerOptions);
+
             }
         });
     }
