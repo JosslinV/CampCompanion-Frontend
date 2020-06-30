@@ -23,6 +23,9 @@ public class MyMapFragment extends SupportMapFragment implements OnMapReadyCallb
 
     //ATTRIBUTES
     private final int MAX_ZOOM = 5;
+    private final LatLngBounds FRANCE = new LatLngBounds(
+            new LatLng(41.2632185, -5.4534286),
+            new LatLng(51.268318, 9.8678344));
 
     public MyMapFragment() {
         getMapAsync(this);
@@ -32,17 +35,11 @@ public class MyMapFragment extends SupportMapFragment implements OnMapReadyCallb
     public void onMapReady(final GoogleMap gmap) {
         this.googleMap = gmap;
 
-        // Set default position
-        LatLngBounds france = new LatLngBounds(
-                new LatLng(41.2632185, -5.4534286),
-                new LatLng(51.268318, 9.8678344));
-
+        // Constrain navigation around france territory
         this.googleMap.setMinZoomPreference(MAX_ZOOM);
-        this.googleMap.setLatLngBoundsForCameraTarget(france);
+        this.googleMap.setLatLngBoundsForCameraTarget(FRANCE);
 
-        this.googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(france.getCenter(), 5));
-
-
+        this.googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(FRANCE.getCenter(), 5));
 
         this.googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
