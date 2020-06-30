@@ -31,9 +31,11 @@ public class Requester {
             }
             @Override
             public void onError(ANError error) {
-                Toast toast = Toast.makeText(activityCaller, "add spot !", Toast.LENGTH_SHORT);
+                Toast toast = Toast.makeText(activityCaller, "Server unreachable: Check your connection.", Toast.LENGTH_SHORT);
                 toast.show();
             }
         });
     }
+
+
 }
