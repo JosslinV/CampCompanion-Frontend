@@ -12,10 +12,11 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 
 import net.azilab.campCompanion.maps.MapFragment;
+import net.azilab.campCompanion.maps.MapHelper;
 
 public class MainActivity extends AppCompatActivity {
 
-    private MapFragment mapFragment;
+    private MapHelper mapHelper;
     private Button addSpot;
     private Button searchSpot;
 
@@ -25,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         FragmentManager fragmentManager = this.getSupportFragmentManager();
-        this.mapFragment = (MapFragment) fragmentManager.findFragmentById(R.id.maps);
+        this.mapHelper = new MapHelper((MapFragment) fragmentManager.findFragmentById(R.id.maps));
 
         this.addSpot = findViewById(R.id.addSpot);
         this.searchSpot = findViewById(R.id.searchSpot);
@@ -36,13 +37,7 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
         initActivity();
 
-        mapFragment.getMapAsync(new OnMapReadyCallback() {
-            @Override
-            public void onMapReady(GoogleMap googleMap) {
-                init();
-            }
-        });
-
+        mapHelper.initMap();
     }
 
     private void initActivity() {
@@ -61,9 +56,5 @@ public class MainActivity extends AppCompatActivity {
                 toast.show();
             }
         });
-    }
-
-    private void init() {
-        this.mapFragment.addPointOnMap(43.595993,1.259442, "Point au hasard");
     }
 }

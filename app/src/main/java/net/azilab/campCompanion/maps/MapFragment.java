@@ -63,6 +63,4 @@ public class MapFragment extends SupportMapFragment implements OnMapReadyCallbac
             this.googleMap.addMarker(newMarker);
         }
     }
-
-
 }
