@@ -14,6 +14,8 @@ import net.azilab.campCompanion.model.Spot;
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import okhttp3.Response;
+
 public class MapHelper {
 
     private static MapFragment mapFragment;
@@ -29,7 +31,7 @@ public class MapHelper {
             @Override
             public void onMapReady(GoogleMap googleMap) {
 
-                Requester.requestSpot(originActivity, new RequestCallback() {
+                Requester.requestSpot(originActivity, new RequestCallback<JSONArray>() {
                     @Override
                     public void onDataReceived(JSONArray response) throws JSONException {
                         for(int i = 0; i < response.length(); i++) {

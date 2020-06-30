@@ -3,6 +3,8 @@ package net.azilab.campCompanion.backendCommunicator;
 import org.json.JSONArray;
 import org.json.JSONException;
 
-public interface RequestCallback {
-    void onDataReceived(JSONArray response) throws JSONException;
+import okhttp3.Response;
+
+public interface RequestCallback<T> {
+    void onDataReceived(T response) throws JSONException;
 }

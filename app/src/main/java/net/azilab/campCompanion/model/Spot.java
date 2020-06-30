@@ -1,5 +1,8 @@
 package net.azilab.campCompanion.model;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class Spot {
 
     private int id;
@@ -83,5 +86,23 @@ public class Spot {
 
     public void setPrivacyNote(int privacyNote) {
         this.privacyNote = privacyNote;
+    }
+
+    public JSONObject toJSon() {
+        JSONObject spotJson = new JSONObject();
+        try {
+            spotJson.put("name", this.name);
+            spotJson.put("latitude", this.latitude);
+            spotJson.put("longitude", this.longitude);
+            spotJson.put("imgPath", this.imgPath);
+            spotJson.put("accessibilityNote", this.accessibilityNote);
+            spotJson.put("locationNote", this.locationNote);
+            spotJson.put("utilitiesNote", this.utilitiesNote);
+            spotJson.put("privacyNote", this.privacyNote);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return spotJson;
     }
 }
