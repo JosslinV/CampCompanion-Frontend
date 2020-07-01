@@ -13,6 +13,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import net.azilab.campCompanion.MainActivity;
@@ -44,23 +45,17 @@ public class MapFragment extends SupportMapFragment implements OnMapReadyCallbac
 
         //Set camera centered on france
         this.googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(FRANCE.getCenter(), 5));
-
-        //Will send a request to backend each time camera is moved
-        this.googleMap.setOnCameraMoveListener(new GoogleMap.OnCameraMoveListener() {
-            @Override
-            public void onCameraMove() {
-                //TODO: Implement request with spots contained on camera boundaries
-            }
-        });
     }
 
-    public void addPointOnMap(double latitude, double longitude, String title) {
+    public void addPointOnMap(double latitude, double longitude, String title, int spotId) {
         if(this.googleMap != null) {
             LatLng markerPosition = new LatLng(latitude, longitude);
             MarkerOptions newMarker = new MarkerOptions();
             newMarker.position(markerPosition);
             newMarker.title(title);
-            this.googleMap.addMarker(newMarker);
+
+            Marker marker = this.googleMap.addMarker(newMarker);
+            marker.setTag(spotId);
         }
     }
 }
