@@ -1,13 +1,5 @@
 package net.azilab.campCompanion.maps;
 
-import android.Manifest;
-import android.app.Activity;
-import android.content.pm.PackageManager;
-import android.view.View;
-
-import androidx.core.app.ActivityCompat;
-
-import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -15,8 +7,6 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-
-import net.azilab.campCompanion.MainActivity;
 
 public class MapFragment extends SupportMapFragment implements OnMapReadyCallback {
     //ELEMENTS
@@ -42,9 +32,6 @@ public class MapFragment extends SupportMapFragment implements OnMapReadyCallbac
 
         //Disable map button
         this.googleMap.getUiSettings().setMapToolbarEnabled(false);
-
-        //Set camera centered on france
-        this.googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(FRANCE.getCenter(), 5));
     }
 
     public void addPointOnMap(double latitude, double longitude, String title, int spotId) {
