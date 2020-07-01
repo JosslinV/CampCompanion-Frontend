@@ -1,6 +1,7 @@
 package net.azilab.campCompanion.maps;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.GoogleMap;
@@ -8,6 +9,9 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.Marker;
 import com.google.gson.Gson;
 
+import net.azilab.campCompanion.AddSpotActivity;
+import net.azilab.campCompanion.MainActivity;
+import net.azilab.campCompanion.SpotInfoActivity;
 import net.azilab.campCompanion.backendCommunicator.RequestCallback;
 import net.azilab.campCompanion.backendCommunicator.Requester;
 import net.azilab.campCompanion.model.Spot;
@@ -66,8 +70,10 @@ public class MapHelper {
             @Override
             public void onDataReceived(JSONObject response) throws JSONException {
                 Spot spotRetrived = new Gson().fromJson(response.toString(), Spot.class);
-                Toast toast = Toast.makeText(originActivity, spotRetrived.getName(), Toast.LENGTH_SHORT);
-                toast.show();
+
+                Intent intent = new Intent(originActivity, SpotInfoActivity.class);
+                intent.putExtra("spot", spotRetrived);
+                originActivity.startActivity(intent);
             }
         });
     }

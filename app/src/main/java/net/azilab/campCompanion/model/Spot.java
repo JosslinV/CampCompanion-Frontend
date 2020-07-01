@@ -3,7 +3,9 @@ package net.azilab.campCompanion.model;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class Spot {
+import java.io.Serializable;
+
+public class Spot implements Serializable {
 
     private int id;
     private String name;

@@ -23,6 +23,9 @@
         <activity android:name=".AddSpotActivity" android:label="Ajouter un spot" android:theme="@style/Default">
         </activity>
 
+        <activity android:name=".SpotInfoActivity" android:theme="@style/Default">
+        </activity>
+
     </application>
 
     <!-- Location permission -->
