@@ -1,5 +1,6 @@
 package net.azilab.campCompanion;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -31,10 +32,14 @@ public class AddSpotActivity extends AppCompatActivity {
 
     private Button addSpot;
 
+    private Intent myIntent;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_spot_view);
+
+        this.myIntent = getIntent();
 
         this.nameTxt = findViewById(R.id.spotName);
         this.latInput = findViewById(R.id.spotLat);
@@ -51,6 +56,14 @@ public class AddSpotActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+
+        if(myIntent.hasExtra("selectedLatitude") && myIntent.hasExtra("selectedLatitude")) {
+            Double latitude = myIntent.getDoubleExtra("selectedLatitude",0.0);
+            Double longitude = myIntent.getDoubleExtra("selectedLongitude",0.0);
+
+            this.latInput.setText(String.valueOf(latitude));
+            this.longInput.setText(String.valueOf(longitude));
+        }
 
         this.addSpot.setOnClickListener(new View.OnClickListener() {
             @Override

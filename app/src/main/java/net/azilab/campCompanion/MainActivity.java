@@ -56,6 +56,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, AddSpotActivity.class);
+                if(mapHelper.getSelectedMarker() != null) {
+                    double markerLatitude =  mapHelper.getSelectedMarker().getPosition().latitude;
+                    double markerLongitude =  mapHelper.getSelectedMarker().getPosition().longitude;
+                    intent.putExtra("selectedLatitude",markerLatitude);
+                    intent.putExtra("selectedLongitude",markerLongitude);
+                }
                 startActivity(intent);
             }
         });

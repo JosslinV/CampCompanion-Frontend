@@ -8,9 +8,12 @@ import android.location.Location;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.gson.Gson;
 
 
@@ -31,6 +34,9 @@ public class MapHelper {
     private Activity originActivity;
     private LocationProvider locationprovider;
 
+    private Marker selectedMarker;
+
+    private final String USER_MARKER = "userMarker";
     private final int MAX_ZOOM = 5;
     private final LatLngBounds FRANCE = new LatLngBounds(
             new LatLng(41.2632185, -5.4534286),
@@ -45,9 +51,9 @@ public class MapHelper {
     public void initMap() {
         mapFragment.getMapAsync(new OnMapReadyCallback() {
             @Override
-            public void onMapReady(GoogleMap googleMap) {
+            public void onMapReady(final GoogleMap googleMap) {
                 centerCamera(googleMap);
-
+                resetSelectedMarker();
                 Requester.requestSpot(originActivity, new RequestCallback<JSONArray>() {
                     @Override
                     public void onDataReceived(JSONArray response) throws JSONException {
@@ -64,8 +70,28 @@ public class MapHelper {
                         return true;
                     }
                 });
+
+                googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+                    @Override
+                    public void onMapClick(LatLng latLng) {
+                        positionMarker(latLng,googleMap);
+                    }
+                });
             }
         });
+    }
+
+    public void positionMarker(LatLng latLng, GoogleMap googleMap) {
+        if(selectedMarker != null) {
+            selectedMarker.remove();
+        }
+        LatLng markerPosition = latLng;
+        MarkerOptions newMarker = new MarkerOptions();
+        newMarker.position(markerPosition);
+        newMarker.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE));
+        newMarker.title(USER_MARKER);
+
+        selectedMarker = googleMap.addMarker(newMarker);
     }
 
     public void setSpot(final Spot spot) {
@@ -78,6 +104,10 @@ public class MapHelper {
     }
 
     public void handleMarkerClick(Marker marker) {
+        if(marker.equals(selectedMarker)) {
+            return;
+        }
+
         int spotId = (int) marker.getTag();
         Requester.requestSpotById(String.valueOf(spotId), originActivity, new RequestCallback<JSONObject>() {
             @Override
@@ -103,5 +133,15 @@ public class MapHelper {
                 }
             }
         });
+    }
+
+    public Marker getSelectedMarker() {
+        return this.selectedMarker;
+    }
+
+    public void resetSelectedMarker() {
+        if(this.getSelectedMarker() != null) {
+            this.selectedMarker.remove();
+        }
     }
 }
