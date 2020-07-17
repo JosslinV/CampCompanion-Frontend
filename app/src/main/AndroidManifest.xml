@@ -26,6 +26,12 @@
         <activity android:name=".SpotInfoActivity" android:theme="@style/Default">
         </activity>
 
+        <activity android:name=".SearchPageActivity" android:label="Rechercher un spot" android:theme="@style/Default">
+        </activity>
+
+        <activity android:name=".ResultPageActivity" android:label="Résultat" android:theme="@style/Default">
+        </activity>
+
     </application>
 
     <!-- Location permission -->

@@ -19,7 +19,6 @@ import net.azilab.campCompanion.model.Spot;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.json.JSONStringer;
 
 import okhttp3.Response;
 
@@ -54,6 +53,29 @@ public class Requester {
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
                     public void onResponse(JSONObject response) {
+                        try {
+                            callback.onDataReceived(response);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    @Override
+                    public void onError(ANError error) {
+                        Toast toast = Toast.makeText(activityCaller, "Server unreachable: Check your connection.", Toast.LENGTH_SHORT);
+                        toast.show();
+                    }
+                });
+    }
+
+    public static void requestSpotByPosition(double latitude, double longitude, final Activity activityCaller, final RequestCallback callback) {
+        AndroidNetworking.get("http://192.168.1.10:8080/api/spot/list")
+                .addQueryParameter("latitude", String.valueOf(latitude))
+                .addQueryParameter("longitude", String.valueOf(longitude))
+                .setPriority(Priority.LOW)
+                .build()
+                .getAsJSONArray(new JSONArrayRequestListener() {
+                    @Override
+                    public void onResponse(JSONArray response) {
                         try {
                             callback.onDataReceived(response);
                         } catch (JSONException e) {

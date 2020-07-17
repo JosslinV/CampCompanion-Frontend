@@ -7,29 +7,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
-import com.google.gson.Gson;
-
-import net.azilab.campCompanion.backendCommunicator.RequestCallback;
-import net.azilab.campCompanion.backendCommunicator.Requester;
 import net.azilab.campCompanion.maps.MapFragment;
 import net.azilab.campCompanion.maps.MapHelper;
-import net.azilab.campCompanion.model.Spot;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-
-import java.util.List;
-import java.util.concurrent.Callable;
 
 public class MainActivity extends AppCompatActivity {
 
     private static MapHelper mapHelper;
     private Button addSpot;
     private Button searchSpot;
-
-    private List<Spot> spotLst;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,8 +55,8 @@ public class MainActivity extends AppCompatActivity {
         this.searchSpot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast toast = Toast.makeText(MainActivity.this, "search spot !", Toast.LENGTH_SHORT);
-                toast.show();
+                Intent intent = new Intent(MainActivity.this, SearchPageActivity.class);
+                startActivity(intent);
             }
         });
     }

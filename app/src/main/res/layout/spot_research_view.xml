@@ -22,49 +22,34 @@
             android:orientation="vertical">
 
             <RadioGroup
+                android:id="@+id/locationGroup"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1">
 
                 <RadioButton
-                    android:id="@+id/radioButton2"
+                    android:id="@+id/aroundUser"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Autour de moi" />
-
-                <View
-                    android:id="@+id/divider2"
-                    android:layout_width="match_parent"
-                    android:layout_height="3dp"
-                    android:layout_weight="1"
-                    android:background="?android:attr/listDivider" />
-
-                <LinearLayout
+                <RadioButton
+                    android:id="@+id/aroundLocation"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <RadioButton
-                        android:id="@+id/radioButton"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="A proximité de" />
-
-                    <EditText
-                        android:id="@+id/editTextTextPersonName"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:ems="10"
-                        android:hint="Emplacement"
-                        android:inputType="textAutoComplete" />
-
-                </LinearLayout>
+                    android:text="A proximité de :" />
 
             </RadioGroup>
+
+            <EditText
+                android:id="@+id/location"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:hint="Emplacement"
+                android:inputType="textAutoComplete" />
 
         </LinearLayout>
 
@@ -90,7 +75,7 @@
                 android:text="Accessibilité" />
 
             <SeekBar
-                android:id="@+id/accessibilitySlider"
+                android:id="@+id/accessibilitySliderSearch"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginStart="16dp"
@@ -111,7 +96,7 @@
                 android:text="Emplacement" />
 
             <SeekBar
-                android:id="@+id/locationSlider"
+                android:id="@+id/locationSliderSearch"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginStart="16dp"
@@ -132,7 +117,7 @@
                 android:text="Commodités" />
 
             <SeekBar
-                android:id="@+id/utilitiesSlider"
+                android:id="@+id/utilitiesSliderSearch"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginStart="16dp"
@@ -153,7 +138,7 @@
                 android:text="Discrétion" />
 
             <SeekBar
-                android:id="@+id/privacySlider"
+                android:id="@+id/privacySliderSearch"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginStart="16dp"
@@ -167,7 +152,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/searchButton"
         android:layout_width="0dp"
         android:layout_height="80dp"
         android:layout_marginStart="8dp"

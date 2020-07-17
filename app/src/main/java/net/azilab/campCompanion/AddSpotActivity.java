@@ -14,7 +14,6 @@ import net.azilab.campCompanion.backendCommunicator.RequestCallback;
 import net.azilab.campCompanion.backendCommunicator.Requester;
 import net.azilab.campCompanion.model.Spot;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 
 import okhttp3.Response;
