@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     private static MapHelper mapHelper;
     private Button addSpot;
     private Button searchSpot;
+    private Button deleteMarker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +28,9 @@ public class MainActivity extends AppCompatActivity {
 
         this.addSpot = findViewById(R.id.addSpot);
         this.searchSpot = findViewById(R.id.searchSpot);
+        this.deleteMarker = findViewById(R.id.deleteMarker);
+
+        this.deleteMarker.setVisibility(View.INVISIBLE);
     }
 
     @Override
@@ -57,6 +61,13 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, SearchPageActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        this.deleteMarker.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mapHelper.resetSelectedMarker();
             }
         });
     }

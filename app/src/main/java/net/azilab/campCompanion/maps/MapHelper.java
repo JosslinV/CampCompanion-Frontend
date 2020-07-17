@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 
 import android.location.Location;
+import android.view.View;
+import android.widget.Button;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -17,6 +19,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.gson.Gson;
 
 
+import net.azilab.campCompanion.R;
 import net.azilab.campCompanion.SpotInfoActivity;
 import net.azilab.campCompanion.backendCommunicator.RequestCallback;
 import net.azilab.campCompanion.backendCommunicator.Requester;
@@ -35,6 +38,7 @@ public class MapHelper {
     private LocationProvider locationprovider;
 
     private Marker selectedMarker;
+    private Button deleteMarker;
 
     private final String USER_MARKER = "userMarker";
     private final int MAX_ZOOM = 5;
@@ -44,6 +48,7 @@ public class MapHelper {
 
     public MapHelper(Activity originActivity, MapFragment mapFragment) {
         this.originActivity = originActivity;
+        this.deleteMarker = originActivity.findViewById(R.id.deleteMarker);
         this.mapFragment = mapFragment;
         this.locationprovider = new LocationProvider(originActivity);
     }
@@ -75,6 +80,7 @@ public class MapHelper {
                     @Override
                     public void onMapClick(LatLng latLng) {
                         positionMarker(latLng,googleMap);
+                        deleteMarker.setVisibility(View.VISIBLE);
                     }
                 });
             }
@@ -83,7 +89,7 @@ public class MapHelper {
 
     public void positionMarker(LatLng latLng, GoogleMap googleMap) {
         if(selectedMarker != null) {
-            selectedMarker.remove();
+            resetSelectedMarker();
         }
         LatLng markerPosition = latLng;
         MarkerOptions newMarker = new MarkerOptions();
@@ -142,6 +148,8 @@ public class MapHelper {
     public void resetSelectedMarker() {
         if(this.getSelectedMarker() != null) {
             this.selectedMarker.remove();
+            this.selectedMarker = null;
+            deleteMarker.setVisibility(View.INVISIBLE);
         }
     }
 }
