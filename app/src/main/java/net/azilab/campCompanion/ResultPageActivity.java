@@ -49,7 +49,7 @@ public class ResultPageActivity extends AppCompatActivity {
                 for(int i = 0; i < response.length(); i++) {
                   lstOfSpot.add(new Gson().fromJson(response.getJSONObject(i).toString(), Spot.class));
                 }
-                spotAdapter = new SpotAdapter(lstOfSpot);
+                spotAdapter = new SpotAdapter(lstOfSpot, ResultPageActivity.this);
                 recyclerView.setAdapter(spotAdapter);
             }
         });
