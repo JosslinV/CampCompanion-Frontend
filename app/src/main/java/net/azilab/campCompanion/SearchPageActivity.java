@@ -14,7 +14,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import net.azilab.campCompanion.maps.location.LocationHandler;
 import net.azilab.campCompanion.maps.location.LocationProvider;
 import net.azilab.campCompanion.model.SpotRequest;
 
@@ -34,14 +33,10 @@ public class SearchPageActivity extends AppCompatActivity {
 
     private Button searchSpot;
 
-    private LocationProvider locationprovider;
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.spot_research_view);
-
-        this.locationprovider = new LocationProvider(this);
 
         this.locationGroup = findViewById(R.id.locationGroup);
         this.aroundUser = findViewById(R.id.aroundUser);
@@ -92,31 +87,32 @@ public class SearchPageActivity extends AppCompatActivity {
     }
 
     private void searchSpot() {
-        final SpotRequest request = new SpotRequest();
-        if(this.locationGroup.getCheckedRadioButtonId() == R.id.aroundUser) {
-            locationprovider.getOnePosition(new LocationHandler() {
-                @Override
-                public void handleLocationReceived(Location location) {
-                    request.setLocationLongitude(location.getLongitude());
-                    request.setLocationLatitude(location.getLatitude());
-                }
-            });
-        } else if(this.locationGroup.getCheckedRadioButtonId() == R.id.aroundLocation) {
-            Toast toast = Toast.makeText(this, "It is around a location !", Toast.LENGTH_SHORT);
-            toast.show();
+        try {
+            final SpotRequest request = new SpotRequest();
+            if (this.locationGroup.getCheckedRadioButtonId() == R.id.aroundUser) {
+                Location location = LocationProvider.getPosition(this);
 
-            locationprovider.getOnePosition(new LocationHandler() {
-                @Override
-                public void handleLocationReceived(Location location) {
-                    request.setLocationLongitude(location.getLongitude());
-                    request.setLocationLatitude(location.getLatitude());
-                }
-            });
+                request.setLocationLongitude(location.getLongitude());
+                request.setLocationLatitude(location.getLatitude());
+
+            } else if (this.locationGroup.getCheckedRadioButtonId() == R.id.aroundLocation) {
+                Toast toast = Toast.makeText(this, "It is around a location !", Toast.LENGTH_SHORT);
+                toast.show();
+
+                Location location = LocationProvider.getPosition(this);
+
+                request.setLocationLongitude(location.getLongitude());
+                request.setLocationLatitude(location.getLatitude());
+            }
+
+            Intent intent = new Intent(this, ResultPageActivity.class);
+            intent.putExtra("requestOptions", request);
+            startActivity(intent);
         }
-
-        Intent intent = new Intent(this, ResultPageActivity.class);
-        intent.putExtra("requestOptions", request);
-        startActivity(intent);
+        catch (NullPointerException e) {
+            Toast toast = Toast.makeText(this, "Location could not be determined.", Toast.LENGTH_SHORT);
+            toast.show();
+        }
 
     }
 }

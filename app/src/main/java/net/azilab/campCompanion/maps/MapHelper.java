@@ -3,14 +3,12 @@ package net.azilab.campCompanion.maps;
 import android.app.Activity;
 import android.content.Intent;
 
-import android.location.Location;
 import android.view.View;
 import android.widget.Button;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
@@ -23,7 +21,6 @@ import net.azilab.campCompanion.R;
 import net.azilab.campCompanion.SpotInfoActivity;
 import net.azilab.campCompanion.backendCommunicator.RequestCallback;
 import net.azilab.campCompanion.backendCommunicator.Requester;
-import net.azilab.campCompanion.maps.location.LocationHandler;
 import net.azilab.campCompanion.maps.location.LocationProvider;
 import net.azilab.campCompanion.model.Spot;
 
@@ -35,7 +32,6 @@ public class MapHelper {
 
     private static MapFragment mapFragment;
     private Activity originActivity;
-    private LocationProvider locationprovider;
 
     private Marker selectedMarker;
     private Button deleteMarker;
@@ -50,7 +46,6 @@ public class MapHelper {
         this.originActivity = originActivity;
         this.deleteMarker = originActivity.findViewById(R.id.deleteMarker);
         this.mapFragment = mapFragment;
-        this.locationprovider = new LocationProvider(originActivity);
     }
 
     public void initMap() {
