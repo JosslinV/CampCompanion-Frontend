@@ -1,4 +1,4 @@
-package com.example.camp_companion;
+package net.azilab.campCompanion;
 
 import org.junit.Test;
 
