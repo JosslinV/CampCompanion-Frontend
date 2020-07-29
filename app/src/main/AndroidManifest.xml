@@ -32,6 +32,9 @@
         <activity android:name=".ResultPageActivity" android:label="Résultat" android:theme="@style/Default">
         </activity>
 
+        <activity android:name=".ShowSpotActivity" android:theme="@style/NoActionBar">
+        </activity>
+
     </application>
 
     <!-- Location permission -->

@@ -57,7 +57,7 @@ public class MapHelper {
         mapFragment.getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(final GoogleMap googleMap) {
-                centerCamera(googleMap);
+                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(FRANCE.getCenter(), 5));
                 resetSelectedMarker();
                 Requester.requestSpot(originActivity, new RequestCallback<JSONArray>() {
                     @Override
@@ -83,6 +83,20 @@ public class MapHelper {
                         deleteMarker.setVisibility(View.VISIBLE);
                     }
                 });
+            }
+        });
+    }
+
+    public void initMapWithPosition(final LatLng position) {
+        mapFragment.getMapAsync(new OnMapReadyCallback() {
+            @Override
+            public void onMapReady(final GoogleMap googleMap) {
+                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(position, 15));
+                resetSelectedMarker();
+
+                MarkerOptions newMarker = new MarkerOptions();
+                newMarker.position(position);
+                googleMap.addMarker(newMarker);
             }
         });
     }
@@ -127,18 +141,9 @@ public class MapHelper {
         });
     }
 
-    public void centerCamera(final GoogleMap googleMap) {
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(FRANCE.getCenter(), 5));
-
-        locationprovider.getOnePosition(new LocationHandler() {
-
-            @Override
-            public void handleLocationReceived(Location location) {
-                if(location != null) {
-                    googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(), location.getLongitude()), 8));
-                }
-            }
-        });
+    public void centerCamera(final GoogleMap googleMap, double latitude, double longitude, int zoom) {
+        LatLng cameraPos = new LatLng(latitude,longitude);
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(cameraPos, zoom));
     }
 
     public Marker getSelectedMarker() {
