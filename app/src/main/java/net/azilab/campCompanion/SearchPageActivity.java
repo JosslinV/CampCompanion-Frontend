@@ -12,10 +12,23 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.libraries.places.api.Places;
+import com.google.android.libraries.places.api.model.LocationRestriction;
+import com.google.android.libraries.places.api.model.Place;
+import com.google.android.libraries.places.api.model.TypeFilter;
+import com.google.android.libraries.places.api.net.PlacesClient;
+import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
+import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
 
 import net.azilab.campCompanion.maps.location.LocationProvider;
 import net.azilab.campCompanion.model.SpotRequest;
+
+import java.util.Arrays;
 
 public class SearchPageActivity extends AppCompatActivity {
 
@@ -29,7 +42,8 @@ public class SearchPageActivity extends AppCompatActivity {
     private SeekBar utilitiesBar;
     private SeekBar privacyBar;
 
-    private TextView locationSearch;
+    private AutocompleteSupportFragment autocompleteFragment;
+    private static Place selectedPlace;
 
     private Button searchSpot;
 
@@ -47,11 +61,36 @@ public class SearchPageActivity extends AppCompatActivity {
         this.locationBar = findViewById(R.id.locationSliderSearch);
         this.utilitiesBar = findViewById(R.id.utilitiesSliderSearch);
         this.privacyBar = findViewById(R.id.privacySliderSearch);
+        this.autocompleteFragment = (AutocompleteSupportFragment) getSupportFragmentManager().findFragmentById(R.id.place_autocomplete_fragment);
 
-        this.locationSearch = findViewById(R.id.location);
-        updateTextViewVisibility(aroundLocation.isChecked());
+        initPlaceFinder();
 
         this.searchSpot = findViewById(R.id.searchButton);
+    }
+
+    private void initPlaceFinder() {
+        // updateTextViewVisibility(aroundLocation.isChecked());
+        String apiKey = getString(R.string.api_key);
+        if (!Places.isInitialized()) {
+            Places.initialize(getApplicationContext(), apiKey);
+        }
+
+        this.autocompleteFragment.setTypeFilter(TypeFilter.CITIES);
+        this.autocompleteFragment.setCountry("FR");
+        this.autocompleteFragment.setPlaceFields(Arrays.asList(Place.Field.NAME, Place.Field.LAT_LNG));
+
+        this.autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+            @Override
+            public void onPlaceSelected(@NonNull Place place) {
+                System.out.println(place);
+                selectedPlace = place;
+            }
+
+            @Override
+            public void onError(@NonNull Status status) {
+                System.out.println(status);
+            }
+        });
     }
 
     @Override
@@ -68,22 +107,6 @@ public class SearchPageActivity extends AppCompatActivity {
                 searchSpot();
             }
         });
-
-        this.aroundLocation.setOnCheckedChangeListener(new RadioButton.OnCheckedChangeListener() {
-
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
-                updateTextViewVisibility(isChecked);
-            }
-        });
-    }
-
-    private void updateTextViewVisibility(boolean visible) {
-        if(visible) {
-            this.locationSearch.setVisibility(View.VISIBLE);
-        } else {
-            this.locationSearch.setVisibility(View.INVISIBLE);
-        }
     }
 
     private void searchSpot() {
@@ -96,13 +119,10 @@ public class SearchPageActivity extends AppCompatActivity {
                 request.setLocationLatitude(location.getLatitude());
 
             } else if (this.locationGroup.getCheckedRadioButtonId() == R.id.aroundLocation) {
-                Toast toast = Toast.makeText(this, "It is around a location !", Toast.LENGTH_SHORT);
-                toast.show();
-
-                Location location = LocationProvider.getPosition(this);
-
-                request.setLocationLongitude(location.getLongitude());
-                request.setLocationLatitude(location.getLatitude());
+                LatLng placeLocation = selectedPlace.getLatLng();
+                System.out.println(placeLocation);
+                request.setLocationLongitude(placeLocation.longitude);
+                request.setLocationLatitude(placeLocation.latitude);
             }
 
             Intent intent = new Intent(this, ResultPageActivity.class);
