@@ -3,6 +3,7 @@ package net.azilab.campCompanion.backendCommunicator;
 import android.app.Activity;
 import android.widget.Toast;
 
+import com.androidnetworking.common.ANRequest;
 import com.androidnetworking.common.Priority;
 
 import com.androidnetworking.AndroidNetworking;
@@ -15,6 +16,7 @@ import com.google.gson.JsonParser;
 
 import net.azilab.campCompanion.MainActivity;
 import net.azilab.campCompanion.model.Spot;
+import net.azilab.campCompanion.model.SpotRequest;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -67,13 +69,30 @@ public class Requester {
                 });
     }
 
-    public static void requestSpotByPosition(double latitude, double longitude, final Activity activityCaller, final RequestCallback callback) {
-        AndroidNetworking.get("http://192.168.1.10:8080/api/spot/list")
-                .addQueryParameter("latitude", String.valueOf(latitude))
-                .addQueryParameter("longitude", String.valueOf(longitude))
-                .setPriority(Priority.LOW)
-                .build()
-                .getAsJSONArray(new JSONArrayRequestListener() {
+    public static void searchSpot(SpotRequest spotRequest, final Activity activityCaller, final RequestCallback callback) {
+        ANRequest.GetRequestBuilder requestBuilder = new ANRequest.GetRequestBuilder("http://192.168.1.10:8080/api/spot/list");
+
+        requestBuilder.addQueryParameter("latitude", String.valueOf(spotRequest.getLocationLatitude()));
+        requestBuilder.addQueryParameter("longitude", String.valueOf(spotRequest.getLocationLongitude()));
+
+        if(spotRequest.getAccessibilityNote() != 0) {
+            requestBuilder.addQueryParameter("accessibility", String.valueOf(spotRequest.getAccessibilityNote()));
+        }
+        if(spotRequest.getLocationNote() != 0) {
+            requestBuilder.addQueryParameter("location", String.valueOf(spotRequest.getLocationNote()));
+        }
+        if(spotRequest.getUtilitiesNote() != 0) {
+            requestBuilder.addQueryParameter("utilities", String.valueOf(spotRequest.getUtilitiesNote()));
+        }
+        if(spotRequest.getPrivacyNote() != 0) {
+            requestBuilder.addQueryParameter("privacy", String.valueOf(spotRequest.getPrivacyNote()));
+        }
+
+        ANRequest request = requestBuilder.build();
+
+        System.out.println(request.getUrl());
+
+        request.getAsJSONArray(new JSONArrayRequestListener() {
                     @Override
                     public void onResponse(JSONArray response) {
                         try {

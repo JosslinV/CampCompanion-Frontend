@@ -125,6 +125,11 @@ public class SearchPageActivity extends AppCompatActivity {
                 request.setLocationLatitude(placeLocation.latitude);
             }
 
+            request.setAccessibilityNote(this.accessibilityBar.getProgress());
+            request.setLocationNote(this.locationBar.getProgress());
+            request.setUtilitiesNote(this.utilitiesBar.getProgress());
+            request.setPrivacyNote(this.privacyBar.getProgress());
+
             Intent intent = new Intent(this, ResultPageActivity.class);
             intent.putExtra("requestOptions", request);
             startActivity(intent);

@@ -38,10 +38,7 @@ public class ResultPageActivity extends AppCompatActivity {
 
         SpotRequest request = (SpotRequest) this.getIntent().getSerializableExtra("requestOptions");
 
-        Requester.requestSpotByPosition(request.getLocationLatitude(),
-                request.getLocationLongitude(),
-                this,
-                new RequestCallback<JSONArray>() {
+        Requester.searchSpot(request,this, new RequestCallback<JSONArray>() {
             @Override
             public void onDataReceived(JSONArray response) throws JSONException {
                 List<Spot> lstOfSpot = new ArrayList<>();
