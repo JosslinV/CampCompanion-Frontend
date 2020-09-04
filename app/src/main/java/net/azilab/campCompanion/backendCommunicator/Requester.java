@@ -26,8 +26,10 @@ import okhttp3.Response;
 
 public class Requester {
 
+    private static String backendUrl = "10.0.2.2:8080";
+
     public static void requestSpot(final Activity activityCaller, final RequestCallback callback) {
-        AndroidNetworking.get("http://192.168.1.10:8080/api/spot")
+        AndroidNetworking.get("http://" + backendUrl + "/api/spot")
         .setPriority(Priority.LOW)
         .build()
         .getAsJSONArray(new JSONArrayRequestListener() {
@@ -48,7 +50,7 @@ public class Requester {
     }
 
     public static void requestSpotById(String spotId, final Activity activityCaller, final RequestCallback callback) {
-        AndroidNetworking.get("http://192.168.1.10:8080/api/spot/{id}")
+        AndroidNetworking.get("http://" + backendUrl + "/api/spot/{id}")
                 .addPathParameter("id", spotId)
                 .setPriority(Priority.LOW)
                 .build()
@@ -70,7 +72,7 @@ public class Requester {
     }
 
     public static void searchSpot(SpotRequest spotRequest, final Activity activityCaller, final RequestCallback callback) {
-        ANRequest.GetRequestBuilder requestBuilder = new ANRequest.GetRequestBuilder("http://192.168.1.10:8080/api/spot/list");
+        ANRequest.GetRequestBuilder requestBuilder = new ANRequest.GetRequestBuilder("http://" + backendUrl + "/api/spot/list");
 
         requestBuilder.addQueryParameter("latitude", String.valueOf(spotRequest.getLocationLatitude()));
         requestBuilder.addQueryParameter("longitude", String.valueOf(spotRequest.getLocationLongitude()));
@@ -110,7 +112,7 @@ public class Requester {
     }
 
     public static void sendSpot(Spot spotToAdd, final Activity activityCaller, final RequestCallback callback) {
-        AndroidNetworking.post("http://192.168.1.10:8080/api/spot")
+        AndroidNetworking.post("http://" + backendUrl + "/api/spot")
                 .setPriority(Priority.LOW)
                 .addHeaders("Content-Type", "application/json")
                 .addJSONObjectBody(spotToAdd.toJSon())
