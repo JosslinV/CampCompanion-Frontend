@@ -8,12 +8,9 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
 
 import net.azilab.campCompanion.backendCommunicator.AuthenticatorRequester;
 import net.azilab.campCompanion.backendCommunicator.RequestCallback;
-import net.azilab.campCompanion.maps.MapFragment;
-import net.azilab.campCompanion.maps.MapHelper;
 import net.azilab.campCompanion.model.Credential;
 
 import org.json.JSONException;
@@ -22,7 +19,7 @@ import java.io.IOException;
 
 import okhttp3.Response;
 
-public class MainActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
     private TextView errorMsg;
     private TextView username;
@@ -58,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
     private void authenticate() {
         Credential credential = new Credential(username.getText().toString(), password.getText().toString());
 
-        AuthenticatorRequester.requestAuthentication(credential, MainActivity.this, new RequestCallback<Response>() {
+        AuthenticatorRequester.requestAuthentication(credential, LoginActivity.this, new RequestCallback<Response>() {
             @Override
             public void onDataReceived(Response response) throws JSONException {
                 if(response.code() == 200) {
@@ -67,9 +64,10 @@ public class MainActivity extends AppCompatActivity {
                         SharedPreferences preferences = getSharedPreferences("applicationPref", MODE_PRIVATE);
                         preferences.edit().putString("token", token).commit();
 
-                        Intent intent = new Intent(MainActivity.this, MapActivity.class);
+                        Intent intent = new Intent(LoginActivity.this, MapActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                         startActivity(intent);
+                        finish();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
