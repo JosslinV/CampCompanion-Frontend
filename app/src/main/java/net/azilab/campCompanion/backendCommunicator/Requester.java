@@ -1,6 +1,7 @@
 package net.azilab.campCompanion.backendCommunicator;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.widget.Toast;
 
 import com.androidnetworking.common.ANRequest;
@@ -24,12 +25,17 @@ import org.json.JSONObject;
 
 import okhttp3.Response;
 
+import static android.content.Context.MODE_PRIVATE;
+
 public class Requester {
 
     private static String backendUrl = "10.0.2.2:8080";
 
     public static void requestSpot(final Activity activityCaller, final RequestCallback callback) {
-        AndroidNetworking.get("http://" + backendUrl + "/api/spot")
+        String token = activityCaller.getSharedPreferences("applicationPref", MODE_PRIVATE).getString("token", "");
+
+        AndroidNetworking.get("http://192.168.1.10:8080/api/spot")
+        .addHeaders("Authorization", "Bearer " + token)
         .setPriority(Priority.LOW)
         .build()
         .getAsJSONArray(new JSONArrayRequestListener() {
@@ -50,7 +56,10 @@ public class Requester {
     }
 
     public static void requestSpotById(String spotId, final Activity activityCaller, final RequestCallback callback) {
-        AndroidNetworking.get("http://" + backendUrl + "/api/spot/{id}")
+        String token = activityCaller.getSharedPreferences("applicationPref", MODE_PRIVATE).getString("token", "");
+
+        AndroidNetworking.get("http://192.168.1.10:8080/api/spot/{id}")
+                .addHeaders("Authorization", "Bearer " + token)
                 .addPathParameter("id", spotId)
                 .setPriority(Priority.LOW)
                 .build()
@@ -72,8 +81,10 @@ public class Requester {
     }
 
     public static void searchSpot(SpotRequest spotRequest, final Activity activityCaller, final RequestCallback callback) {
-        ANRequest.GetRequestBuilder requestBuilder = new ANRequest.GetRequestBuilder("http://" + backendUrl + "/api/spot/list");
+        String token = activityCaller.getSharedPreferences("applicationPref", MODE_PRIVATE).getString("token", "");
+        ANRequest.GetRequestBuilder requestBuilder = new ANRequest.GetRequestBuilder("http://192.168.1.10:8080/api/spot/list");
 
+        requestBuilder.addHeaders("Authorization", "Bearer " + token);
         requestBuilder.addQueryParameter("latitude", String.valueOf(spotRequest.getLocationLatitude()));
         requestBuilder.addQueryParameter("longitude", String.valueOf(spotRequest.getLocationLongitude()));
 
@@ -112,8 +123,10 @@ public class Requester {
     }
 
     public static void sendSpot(Spot spotToAdd, final Activity activityCaller, final RequestCallback callback) {
-        AndroidNetworking.post("http://" + backendUrl + "/api/spot")
+        String token = activityCaller.getSharedPreferences("applicationPref", MODE_PRIVATE).getString("token", "");
+        AndroidNetworking.post("http://192.168.1.10:8080/api/spot")
                 .setPriority(Priority.LOW)
+                .addHeaders("Authorization", "Bearer " + token)
                 .addHeaders("Content-Type", "application/json")
                 .addJSONObjectBody(spotToAdd.toJSon())
                 .build()
