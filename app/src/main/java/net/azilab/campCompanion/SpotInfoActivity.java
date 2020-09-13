@@ -7,8 +7,22 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.gson.Gson;
+
+import net.azilab.campCompanion.backendCommunicator.LogRequester;
+import net.azilab.campCompanion.backendCommunicator.RequestCallback;
+import net.azilab.campCompanion.helper.log.LogAdapter;
+import net.azilab.campCompanion.model.Log;
 import net.azilab.campCompanion.model.Spot;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class SpotInfoActivity extends AppCompatActivity {
 
@@ -21,6 +35,10 @@ public class SpotInfoActivity extends AppCompatActivity {
 
     private Button displayOnMap;
     private Button addLog;
+
+    private RecyclerView logZone;
+    private RecyclerView.LayoutManager layoutManager;
+    private LogAdapter logAdapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -35,12 +53,35 @@ public class SpotInfoActivity extends AppCompatActivity {
 
         this.displayOnMap = findViewById(R.id.displayMapButton);
         this.addLog = findViewById(R.id.addLog);
+
+        this.logZone = findViewById(R.id.logZone);
+        logZone.setHasFixedSize(true);
+        layoutManager = new LinearLayoutManager(this);
+        logZone.setLayoutManager(layoutManager);
+
+        LogRequester.getLogForSpot(String.valueOf(spot.getId()), SpotInfoActivity.this, new RequestCallback<JSONArray>() {
+            @Override
+            public void onDataReceived(JSONArray response) throws JSONException {
+                List<Log> lstOfLogs = new ArrayList<>();
+
+                for(int i = 0; i < response.length(); i++) {
+                    Log logToAdd = new Gson().fromJson(response.getJSONObject(i).toString(), Log.class);
+                    lstOfLogs.add(logToAdd);
+                    System.out.println("pouet");
+                }
+                android.util.Log.println( android.util.Log.INFO, "hello","pouet pouet");
+
+                logAdapter = new LogAdapter(lstOfLogs, SpotInfoActivity.this);
+                logZone.setAdapter(logAdapter);
+            }
+        });
+
     }
+
 
     @Override
     protected void onStart() {
         super.onStart();
-
         getSupportActionBar().setTitle(spot.getName());
 
         this.accessibilityNote.setText(String.valueOf(spot.getAccessibilityNote()));
@@ -66,5 +107,13 @@ public class SpotInfoActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        getLogs();
+    }
+
+    private void getLogs() {
+
+
+
     }
 }

@@ -20,8 +20,7 @@ import com.google.gson.Gson;
 import net.azilab.campCompanion.R;
 import net.azilab.campCompanion.SpotInfoActivity;
 import net.azilab.campCompanion.backendCommunicator.RequestCallback;
-import net.azilab.campCompanion.backendCommunicator.Requester;
-import net.azilab.campCompanion.maps.location.LocationProvider;
+import net.azilab.campCompanion.backendCommunicator.SpotRequester;
 import net.azilab.campCompanion.model.Spot;
 
 import org.json.JSONArray;
@@ -54,7 +53,7 @@ public class MapHelper {
             public void onMapReady(final GoogleMap googleMap) {
                 googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(FRANCE.getCenter(), 5));
                 resetSelectedMarker();
-                Requester.requestSpot(originActivity, new RequestCallback<JSONArray>() {
+                SpotRequester.requestSpot(originActivity, new RequestCallback<JSONArray>() {
                     @Override
                     public void onDataReceived(JSONArray response) throws JSONException {
                         for(int i = 0; i < response.length(); i++) {
@@ -124,7 +123,7 @@ public class MapHelper {
         }
 
         int spotId = (int) marker.getTag();
-        Requester.requestSpotById(String.valueOf(spotId), originActivity, new RequestCallback<JSONObject>() {
+        SpotRequester.requestSpotById(String.valueOf(spotId), originActivity, new RequestCallback<JSONObject>() {
             @Override
             public void onDataReceived(JSONObject response) throws JSONException {
                 Spot spotRetrived = new Gson().fromJson(response.toString(), Spot.class);

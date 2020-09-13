@@ -51,4 +51,30 @@ public class LogRequester {
                 });
     }
 
+    public static void getLogForSpot(String spotId, final Activity activityCaller, final RequestCallback callback) {
+        String token = activityCaller.getSharedPreferences("applicationPref", MODE_PRIVATE).getString("token", "");
+        AndroidNetworking.get("http://" + backendUrl + "/api/log/list/{id}")
+                .addPathParameter("id", spotId)
+                .setPriority(Priority.LOW)
+                .addHeaders("Authorization", "Bearer " + token)
+                .build()
+                .getAsJSONArray(new JSONArrayRequestListener() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        try {
+                            callback.onDataReceived(response);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onError(ANError error) {
+                        System.out.println(error.getErrorBody());
+                        Toast toast = Toast.makeText(activityCaller, "Error while receiving data.", Toast.LENGTH_SHORT);
+                        toast.show();
+                    }
+                });
+    }
+
 }

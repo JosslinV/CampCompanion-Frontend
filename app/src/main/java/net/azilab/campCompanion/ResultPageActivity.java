@@ -10,7 +10,7 @@ import com.google.gson.Gson;
 
 import net.azilab.campCompanion.backendCommunicator.RequestCallback;
 import net.azilab.campCompanion.backendCommunicator.SpotRequester;
-import net.azilab.campCompanion.helper.SpotAdapter;
+import net.azilab.campCompanion.helper.spot.SpotAdapter;
 import net.azilab.campCompanion.model.Spot;
 import net.azilab.campCompanion.model.SpotRequest;
 
@@ -22,8 +22,9 @@ import java.util.List;
 
 public class ResultPageActivity extends AppCompatActivity {
 
-    private RecyclerView recyclerView;
     private SpotAdapter spotAdapter;
+
+    private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
 
     @Override

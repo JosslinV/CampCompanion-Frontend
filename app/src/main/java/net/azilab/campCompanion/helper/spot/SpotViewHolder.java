@@ -1,4 +1,4 @@
-package net.azilab.campCompanion.helper;
+package net.azilab.campCompanion.helper.spot;
 
 import android.view.View;
 import android.widget.TextView;
