@@ -65,7 +65,6 @@ public class LoginActivity extends AppCompatActivity {
                         preferences.edit().putString("token", token).commit();
 
                         Intent intent = new Intent(LoginActivity.this, MapActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                         startActivity(intent);
                         finish();
                     } catch (IOException e) {

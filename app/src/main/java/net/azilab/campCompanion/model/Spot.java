@@ -93,6 +93,7 @@ public class Spot implements Serializable {
     public JSONObject toJSon() {
         JSONObject spotJson = new JSONObject();
         try {
+            spotJson.put("id", this.id);
             spotJson.put("name", this.name);
             spotJson.put("latitude", this.latitude);
             spotJson.put("longitude", this.longitude);

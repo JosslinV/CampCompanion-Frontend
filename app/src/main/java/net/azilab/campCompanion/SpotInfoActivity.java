@@ -20,6 +20,7 @@ public class SpotInfoActivity extends AppCompatActivity {
     private TextView privacyNote;
 
     private Button displayOnMap;
+    private Button addLog;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -33,6 +34,7 @@ public class SpotInfoActivity extends AppCompatActivity {
         this.privacyNote = findViewById(R.id.privacyDisplay);
 
         this.displayOnMap = findViewById(R.id.displayMapButton);
+        this.addLog = findViewById(R.id.addLog);
     }
 
     @Override
@@ -52,6 +54,15 @@ public class SpotInfoActivity extends AppCompatActivity {
                 Intent intent = new Intent(SpotInfoActivity.this, ShowSpotActivity.class);
                 intent.putExtra("spotLat", spot.getLatitude());
                 intent.putExtra("spotLon", spot.getLongitude());
+                startActivity(intent);
+            }
+        });
+
+        this.addLog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SpotInfoActivity.this, AddLogActivity.class);
+                intent.putExtra("spot", spot);
                 startActivity(intent);
             }
         });

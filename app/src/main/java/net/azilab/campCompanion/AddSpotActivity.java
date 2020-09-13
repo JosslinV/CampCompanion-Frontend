@@ -11,7 +11,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import net.azilab.campCompanion.backendCommunicator.RequestCallback;
-import net.azilab.campCompanion.backendCommunicator.Requester;
+import net.azilab.campCompanion.backendCommunicator.SpotRequester;
 import net.azilab.campCompanion.model.Spot;
 
 import org.json.JSONException;
@@ -83,7 +83,7 @@ public class AddSpotActivity extends AppCompatActivity {
         newSpot.setUtilitiesNote(utilitiesBar.getProgress() + 1);
         newSpot.setPrivacyNote(privacyBar.getProgress() + 1);
 
-        Requester.sendSpot(newSpot, AddSpotActivity.this, new RequestCallback<Response>() {
+        SpotRequester.sendSpot(newSpot, AddSpotActivity.this, new RequestCallback<Response>() {
             @Override
             public void onDataReceived(Response response) throws JSONException {
                 Toast toast = Toast.makeText(AddSpotActivity.this, "Spot added with success", Toast.LENGTH_SHORT);

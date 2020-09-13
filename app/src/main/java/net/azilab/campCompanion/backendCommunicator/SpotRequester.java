@@ -24,7 +24,7 @@ import okhttp3.Response;
 
 import static android.content.Context.MODE_PRIVATE;
 
-public class Requester {
+public class SpotRequester {
 
     private static String backendUrl = "192.168.1.10:8080";
 

@@ -6,166 +6,183 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ScrollView
-        android:layout_width="0dp"
+    <LinearLayout
+        android:id="@+id/linearLayout4"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:contentDescription="CampImage"
+            android:scaleType="fitXY"
+            tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
-
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:contentDescription="CampImage"
-                android:scaleType="fitXY"
-                tools:srcCompat="@tools:sample/backgrounds/scenic" />
+            android:baselineAligned="false"
+            android:orientation="horizontal">
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:baselineAligned="false">
+                android:layout_weight="40"
+                android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/accessibilityLabelInfo"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="40"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/accessibilityLabelInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="Accessibilité
+                    android:gravity="center"
+                    android:text="Accessibilité
 " />
 
-                    <TextView
-                        android:id="@+id/accessibilityDisplay"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="0"
-                        android:textSize="36sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/accessibilityDisplay"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="40"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/locationLabelInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="Emplacement" />
-
-                    <TextView
-                        android:id="@+id/locationDisplay"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="0"
-                        android:textSize="36sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="40"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/utilitiesLabelinfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="Commodités" />
-
-                    <TextView
-                        android:id="@+id/utilitiesDisplay"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="0"
-                        android:textSize="36sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="40"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/privacyLabelInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="Discrétion" />
-
-                    <TextView
-                        android:id="@+id/privacyDisplay"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="0"
-                        android:textSize="36sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
+                    android:gravity="center"
+                    android:text="0"
+                    android:textSize="36sp"
+                    android:textStyle="bold" />
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="40"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/locationLabelInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Emplacement" />
+
+                <TextView
+                    android:id="@+id/locationDisplay"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textSize="36sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="40"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/utilitiesLabelinfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Commodités" />
+
+                <TextView
+                    android:id="@+id/utilitiesDisplay"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textSize="36sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="40"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/privacyLabelInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Discrétion" />
+
+                <TextView
+                    android:id="@+id/privacyDisplay"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textSize="36sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:layout_weight="0"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/goButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:text="Je m'y rends !" />
+
+            <Button
+                android:id="@+id/displayMapButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:text="Voir sur la carte" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="?android:attr/listDivider"
+            android:backgroundTint="@color/common_google_signin_btn_text_dark_focused" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                android:layout_weight="0"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
-                <Button
-                    android:id="@+id/goButton"
-                    android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/LastLogsLabel"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:text="Je m'y rends !" />
-
-                <Button
-                    android:id="@+id/displayMapButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:text="Voir sur la carte" />
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="4dp"
+                    android:text="Derniers logs :"
+                    android:textSize="24sp" />
             </LinearLayout>
+        </ScrollView>
 
-            <View
-                android:id="@+id/divider"
-                android:layout_width="match_parent"
-                android:layout_height="3dp"
-                android:background="?android:attr/listDivider"
-                android:backgroundTint="@color/common_google_signin_btn_text_dark_focused" />
+    </LinearLayout>
 
-            <TextView
-                android:id="@+id/LastLogsLabel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="4dp"
-                android:text="Derniers logs :"
-                android:textSize="24sp" />
+    <Button
+        android:id="@+id/addLog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ajouter un log"
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-        </LinearLayout>
-    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

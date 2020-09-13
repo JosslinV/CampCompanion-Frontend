@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.gson.Gson;
 
 import net.azilab.campCompanion.backendCommunicator.RequestCallback;
-import net.azilab.campCompanion.backendCommunicator.Requester;
+import net.azilab.campCompanion.backendCommunicator.SpotRequester;
 import net.azilab.campCompanion.helper.SpotAdapter;
 import net.azilab.campCompanion.model.Spot;
 import net.azilab.campCompanion.model.SpotRequest;
@@ -38,7 +38,7 @@ public class ResultPageActivity extends AppCompatActivity {
 
         SpotRequest request = (SpotRequest) this.getIntent().getSerializableExtra("requestOptions");
 
-        Requester.searchSpot(request,this, new RequestCallback<JSONArray>() {
+        SpotRequester.searchSpot(request,this, new RequestCallback<JSONArray>() {
             @Override
             public void onDataReceived(JSONArray response) throws JSONException {
                 List<Spot> lstOfSpot = new ArrayList<>();

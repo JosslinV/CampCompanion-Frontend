@@ -28,6 +28,9 @@
         <activity android:name=".AddSpotActivity" android:label="Ajouter un spot" android:theme="@style/Default">
         </activity>
 
+        <activity android:name=".AddLogActivity" android:label="Ajouter un log" android:theme="@style/Default">
+        </activity>
+
         <activity android:name=".SpotInfoActivity" android:theme="@style/Default">
         </activity>
 
