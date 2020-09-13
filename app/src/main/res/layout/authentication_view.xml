@@ -10,16 +10,14 @@
         android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="@color/colorBG">
 
-        <TextView
-            android:id="@+id/welcomeTxt"
-            android:layout_width="wrap_content"
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="8dp"
-            android:text="Bienvenue"
-            android:textSize="34sp" />
+            app:srcCompat="@drawable/title_img" />
 
         <EditText
             android:id="@+id/usernameTxt"
@@ -56,6 +54,7 @@
         android:text="Connexion"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:background="@color/colorFront"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
