@@ -9,9 +9,9 @@
     <item android:state_focused="true"
         android:drawable="@drawable/search_btn_idle"
         android:width="64dp"
-        android:height="64dp"/> <!-- focused -->
+        android:height="68dp"/> <!-- focused -->
 
     <item android:drawable="@drawable/search_btn_idle"
         android:width="64dp"
-        android:height="64dp"/>
+        android:height="68dp"/>
 </layer-list>

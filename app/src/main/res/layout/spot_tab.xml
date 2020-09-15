@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/colorBG">
 
     <LinearLayout
         android:id="@+id/spot_tab"
@@ -38,7 +39,8 @@
                     android:layout_weight="1"
                     android:singleLine="true"
                     android:text="Camp Name"
-                    android:textSize="22sp" />
+                    android:textSize="22sp"
+                    android:textColor="#ffffff"/>
 
                 <TextView
                     android:id="@+id/distance_camp_tab"
@@ -46,7 +48,8 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:text="distance"
-                    android:textAlignment="textEnd" />
+                    android:textAlignment="textEnd"
+                    android:textColor="#ffffff"/>
 
             </LinearLayout>
 
@@ -68,7 +71,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Acces."
-                        android:textAlignment="center" />
+                        android:textAlignment="center"
+                        android:textColor="#ffffff"/>
 
                     <TextView
                         android:id="@+id/access_tab"
@@ -77,7 +81,8 @@
                         android:gravity="center"
                         android:text="0"
                         android:textSize="24sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:textColor="@color/noteColor"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -91,7 +96,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Empl."
-                        android:textAlignment="center" />
+                        android:textAlignment="center"
+                        android:textColor="#ffffff"/>
 
                     <TextView
                         android:id="@+id/loc_tab"
@@ -100,7 +106,8 @@
                         android:gravity="center"
                         android:text="0"
                         android:textSize="24sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:textColor="@color/noteColor"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -114,7 +121,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Comm."
-                        android:textAlignment="center" />
+                        android:textAlignment="center"
+                        android:textColor="#ffffff"/>
 
                     <TextView
                         android:id="@+id/comm_tab"
@@ -123,7 +131,8 @@
                         android:gravity="center"
                         android:text="0"
                         android:textSize="24sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:textColor="@color/noteColor"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -137,7 +146,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Discr."
-                        android:textAlignment="center" />
+                        android:textAlignment="center"
+                        android:textColor="#ffffff"/>
 
                     <TextView
                         android:id="@+id/priv_tab"
@@ -146,7 +156,8 @@
                         android:gravity="center"
                         android:text="0"
                         android:textSize="24sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:textColor="@color/noteColor"/>
                 </LinearLayout>
             </LinearLayout>
 

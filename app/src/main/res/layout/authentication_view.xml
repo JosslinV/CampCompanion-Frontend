@@ -24,6 +24,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/round_corner"
             android:ems="10"
             android:hint="Utilisateur"
             android:inputType="textPersonName" />
@@ -33,6 +35,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/round_corner"
             android:ems="10"
             android:hint="Mot de passe"
             android:inputType="textPassword" />
@@ -52,6 +56,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Connexion"
+        android:textColor="#ffffff"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

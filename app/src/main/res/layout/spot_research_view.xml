@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorBG">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -32,13 +33,17 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Autour de moi" />
+                    android:text="Autour de moi"
+                    android:textColor="#ffffff"
+                    android:textSize="18dp"/>
                 <RadioButton
                     android:id="@+id/aroundLocation"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="A proximité de :" />
+                    android:text="A proximité de :"
+                    android:textColor="#ffffff"
+                    android:textSize="18dp"/>
 
             </RadioGroup>
 
@@ -69,7 +74,9 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="4dp"
-                android:text="Accessibilité" />
+                android:text="Accessibilité"
+                android:textColor="#ffffff"
+                android:textSize="18dp"/>
 
             <SeekBar
                 android:id="@+id/accessibilitySliderSearch"
@@ -79,9 +86,9 @@
                 android:layout_marginEnd="16dp"
                 android:max="3"
                 android:min="0"
-                android:thumb="@android:drawable/btn_radio"
-                android:tickMark="@android:drawable/radiobutton_off_background"
-                android:tickMarkTint="#FF0000" />
+
+                android:thumb="@drawable/slider_knob_usable"
+                android:tickMark="@drawable/slider_point" />
 
             <TextView
                 android:id="@+id/locationLabel"
@@ -90,7 +97,9 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="4dp"
-                android:text="Emplacement" />
+                android:text="Emplacement"
+                android:textColor="#ffffff"
+                android:textSize="18dp"/>
 
             <SeekBar
                 android:id="@+id/locationSliderSearch"
@@ -100,9 +109,9 @@
                 android:layout_marginEnd="16dp"
                 android:max="3"
                 android:min="0"
-                android:thumb="@android:drawable/btn_radio"
-                android:tickMark="@android:drawable/radiobutton_off_background"
-                android:tickMarkTint="#FF0000" />
+                android:thumb="@drawable/slider_knob_usable"
+                android:tickMark="@drawable/slider_point"
+                />
 
             <TextView
                 android:id="@+id/utilitiesLabel"
@@ -111,7 +120,9 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="4dp"
-                android:text="Commodités" />
+                android:text="Commodités"
+                android:textColor="#ffffff"
+                android:textSize="18dp"/>
 
             <SeekBar
                 android:id="@+id/utilitiesSliderSearch"
@@ -121,9 +132,8 @@
                 android:layout_marginEnd="16dp"
                 android:max="3"
                 android:min="0"
-                android:thumb="@android:drawable/btn_radio"
-                android:tickMark="@android:drawable/radiobutton_off_background"
-                android:tickMarkTint="#FF0000" />
+                android:thumb="@drawable/slider_knob_usable"
+                android:tickMark="@drawable/slider_point" />
 
             <TextView
                 android:id="@+id/privacyLabel"
@@ -132,7 +142,9 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="4dp"
-                android:text="Discrétion" />
+                android:text="Discrétion"
+                android:textColor="#ffffff"
+                android:textSize="18dp"/>
 
             <SeekBar
                 android:id="@+id/privacySliderSearch"
@@ -142,9 +154,8 @@
                 android:layout_marginEnd="16dp"
                 android:max="3"
                 android:min="0"
-                android:thumb="@android:drawable/btn_radio"
-                android:tickMark="@android:drawable/radiobutton_off_background"
-                android:tickMarkTint="#FF0000" />
+                android:thumb="@drawable/slider_knob_usable"
+                android:tickMark="@drawable/slider_point" />
         </LinearLayout>
     </LinearLayout>
 

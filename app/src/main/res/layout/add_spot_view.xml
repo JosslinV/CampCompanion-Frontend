@@ -5,7 +5,8 @@
     android:id="@+id/constraint"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fadingEdge="horizontal|vertical|none">
+    android:fadingEdge="horizontal|vertical|none"
+    android:background="@color/colorBG">
 
     <LinearLayout
         android:id="@+id/linearLayout2"
@@ -14,50 +15,81 @@
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        >
 
         <EditText
             android:id="@+id/spotName"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="40dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
             android:ems="10"
             android:forceDarkAllowed="false"
             android:hint="Nom"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            android:background="@drawable/normal_textview"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
             android:orientation="horizontal">
 
-            <EditText
-                android:id="@+id/spotLat"
-                android:layout_width="359dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_weight="1"
-                android:ems="10"
-                android:forceDarkAllowed="false"
-                android:hint="Latitude"
-                android:inputType="numberDecimal" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="4dp"
+                android:layout_weight="0"
+                android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/spotLong"
-                android:layout_width="359dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_weight="1"
-                android:ems="10"
-                android:forceDarkAllowed="false"
-                android:hint="Longitude"
-                android:inputType="numberDecimal" />
+                <TextView
+                    android:id="@+id/latLbl"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Latitude"
+                    android:textColor="#ffffff"
+                    android:textSize="18dp" />
+
+                <EditText
+                    android:id="@+id/spotLat"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@drawable/normal_textview"
+                    android:ems="10"
+                    android:forceDarkAllowed="false"
+                    android:hint="Latitude"
+                    android:inputType="numberDecimal" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="4dp"
+                android:layout_weight="0"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/longLbl"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Longitude"
+                    android:textColor="#ffffff"
+                    android:textSize="18dp" />
+
+                <EditText
+                    android:id="@+id/spotLong"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@drawable/normal_textview"
+                    android:ems="10"
+                    android:forceDarkAllowed="false"
+                    android:hint="Longitude"
+                    android:inputType="numberDecimal" />
+            </LinearLayout>
+
         </LinearLayout>
 
     </LinearLayout>
@@ -84,7 +116,9 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="4dp"
-            android:text="Accessibilité" />
+            android:text="Accessibilité"
+            android:textColor="#ffffff"
+            android:textSize="18dp"/>
 
         <SeekBar
             android:id="@+id/accessibilitySlider"
@@ -94,9 +128,8 @@
             android:layout_marginEnd="16dp"
             android:max="2"
             android:min="0"
-            android:thumb="@android:drawable/btn_radio"
-            android:tickMark="@android:drawable/radiobutton_off_background"
-            android:tickMarkTint="#FF0000" />
+            android:thumb="@drawable/slider_knob_usable"
+            android:tickMark="@drawable/slider_point" />
 
         <TextView
             android:id="@+id/locationLabel"
@@ -105,7 +138,9 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="4dp"
-            android:text="Emplacement" />
+            android:text="Emplacement"
+            android:textColor="#ffffff"
+            android:textSize="18dp"/>
 
         <SeekBar
             android:id="@+id/locationSlider"
@@ -115,9 +150,8 @@
             android:layout_marginEnd="16dp"
             android:max="2"
             android:min="0"
-            android:thumb="@android:drawable/btn_radio"
-            android:tickMark="@android:drawable/radiobutton_off_background"
-            android:tickMarkTint="#FF0000" />
+            android:thumb="@drawable/slider_knob_usable"
+            android:tickMark="@drawable/slider_point" />
 
         <TextView
             android:id="@+id/utilitiesLabel"
@@ -126,7 +160,9 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="4dp"
-            android:text="Commodités" />
+            android:text="Commodités"
+            android:textColor="#ffffff"
+            android:textSize="18dp"/>
 
         <SeekBar
             android:id="@+id/utilitiesSlider"
@@ -136,9 +172,8 @@
             android:layout_marginEnd="16dp"
             android:max="2"
             android:min="0"
-            android:thumb="@android:drawable/btn_radio"
-            android:tickMark="@android:drawable/radiobutton_off_background"
-            android:tickMarkTint="#FF0000" />
+            android:thumb="@drawable/slider_knob_usable"
+            android:tickMark="@drawable/slider_point" />
 
         <TextView
             android:id="@+id/privacyLabel"
@@ -147,7 +182,9 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="4dp"
-            android:text="Discrétion" />
+            android:text="Discrétion"
+            android:textColor="#ffffff"
+            android:textSize="18dp"/>
 
         <SeekBar
             android:id="@+id/privacySlider"
@@ -157,9 +194,8 @@
             android:layout_marginEnd="16dp"
             android:max="2"
             android:min="0"
-            android:thumb="@android:drawable/btn_radio"
-            android:tickMark="@android:drawable/radiobutton_off_background"
-            android:tickMarkTint="#FF0000" />
+            android:thumb="@drawable/slider_knob_usable"
+            android:tickMark="@drawable/slider_point" />
     </LinearLayout>
 
     <Button

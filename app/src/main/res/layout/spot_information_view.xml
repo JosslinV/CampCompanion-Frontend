@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorBG">
 
     <LinearLayout
         android:id="@+id/linearLayout4"
@@ -41,8 +42,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Accessibilité
-" />
+                    android:text="Accessibilité"
+                    android:textColor="#ffffff"/>
 
                 <TextView
                     android:id="@+id/accessibilityDisplay"
@@ -51,7 +52,8 @@
                     android:gravity="center"
                     android:text="0"
                     android:textSize="36sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:textColor="@color/noteColor"/>
             </LinearLayout>
 
             <LinearLayout
@@ -65,7 +67,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Emplacement" />
+                    android:text="Emplacement"
+                    android:textColor="#ffffff"/>
 
                 <TextView
                     android:id="@+id/locationDisplay"
@@ -74,7 +77,8 @@
                     android:gravity="center"
                     android:text="0"
                     android:textSize="36sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:textColor="@color/noteColor"/>
             </LinearLayout>
 
             <LinearLayout
@@ -88,7 +92,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Commodités" />
+                    android:text="Commodités"
+                    android:textColor="#ffffff"/>
 
                 <TextView
                     android:id="@+id/utilitiesDisplay"
@@ -97,7 +102,8 @@
                     android:gravity="center"
                     android:text="0"
                     android:textSize="36sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:textColor="@color/noteColor"/>
             </LinearLayout>
 
             <LinearLayout
@@ -111,7 +117,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Discrétion" />
+                    android:text="Discrétion"
+                    android:textColor="#ffffff"/>
 
                 <TextView
                     android:id="@+id/privacyDisplay"
@@ -120,7 +127,8 @@
                     android:gravity="center"
                     android:text="0"
                     android:textSize="36sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:textColor="@color/noteColor"/>
             </LinearLayout>
 
         </LinearLayout>
