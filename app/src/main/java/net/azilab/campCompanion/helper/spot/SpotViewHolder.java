@@ -1,6 +1,8 @@
 package net.azilab.campCompanion.helper.spot;
 
+import android.graphics.drawable.Drawable;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -9,6 +11,8 @@ import net.azilab.campCompanion.R;
 import net.azilab.campCompanion.model.Spot;
 
 public class SpotViewHolder extends RecyclerView.ViewHolder {
+
+    ImageView thumbnail;
 
     TextView campName;
     TextView distance;
@@ -20,6 +24,7 @@ public class SpotViewHolder extends RecyclerView.ViewHolder {
 
     public SpotViewHolder(View itemView) {
         super(itemView);
+        this.thumbnail = itemView.findViewById(R.id.spot_img_tab);
         this.campName = itemView.findViewById(R.id.camp_name_tab);
         this.distance = itemView.findViewById(R.id.distance_camp_tab);
 
@@ -33,6 +38,7 @@ public class SpotViewHolder extends RecyclerView.ViewHolder {
     public void updateWithSpot(Spot spot){
         this.campName.setText(spot.getName());
         this.distance.setText("N/A");
+        this.thumbnail.setBackgroundResource(R.drawable.search_btn_idle);
 
         this.accessNote.setText(String.valueOf(spot.getAccessibilityNote()));
         this.locationNote.setText(String.valueOf(spot.getLocationNote()));

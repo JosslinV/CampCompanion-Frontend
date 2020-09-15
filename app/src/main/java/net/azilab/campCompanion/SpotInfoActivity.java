@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,6 +29,8 @@ public class SpotInfoActivity extends AppCompatActivity {
 
     private static Spot spot;
 
+    private ImageView thumbnail;
+
     private TextView accessibilityNote;
     private TextView locationNote;
     private TextView utilitiesNote;
@@ -45,6 +48,8 @@ public class SpotInfoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         spot = (Spot) getIntent().getSerializableExtra("spot");
         setContentView(R.layout.spot_information_view);
+
+        this.thumbnail = findViewById(R.id.spotImage);
 
         this.accessibilityNote = findViewById(R.id.accessibilityDisplay);
         this.locationNote = findViewById(R.id.locationDisplay);
@@ -83,6 +88,8 @@ public class SpotInfoActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         getSupportActionBar().setTitle(spot.getName());
+
+        this.thumbnail.setBackgroundResource(R.drawable.splash_screen);
 
         this.accessibilityNote.setText(String.valueOf(spot.getAccessibilityNote()));
         this.locationNote.setText(String.valueOf(spot.getLocationNote()));
