@@ -38,7 +38,7 @@ public class SpotViewHolder extends RecyclerView.ViewHolder {
     public void updateWithSpot(Spot spot){
         this.campName.setText(spot.getName());
         this.distance.setText("N/A");
-        this.thumbnail.setBackgroundResource(R.drawable.search_btn_idle);
+        this.thumbnail.setBackgroundResource(R.drawable.camp_thumbnail);
 
         this.accessNote.setText(String.valueOf(spot.getAccessibilityNote()));
         this.locationNote.setText(String.valueOf(spot.getLocationNote()));

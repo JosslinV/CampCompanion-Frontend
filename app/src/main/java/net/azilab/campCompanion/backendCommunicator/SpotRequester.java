@@ -47,6 +47,7 @@ public class SpotRequester {
             @Override
             public void onError(ANError error) {
                 Toast toast = Toast.makeText(activityCaller, "Server unreachable: Check your connection.", Toast.LENGTH_SHORT);
+                System.out.println(error.getErrorBody());
                 toast.show();
             }
         });

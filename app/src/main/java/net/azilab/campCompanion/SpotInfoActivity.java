@@ -89,7 +89,7 @@ public class SpotInfoActivity extends AppCompatActivity {
         super.onStart();
         getSupportActionBar().setTitle(spot.getName());
 
-        this.thumbnail.setBackgroundResource(R.drawable.splash_screen);
+        this.thumbnail.setBackgroundResource(R.drawable.camp_filler);
 
         this.accessibilityNote.setText(String.valueOf(spot.getAccessibilityNote()));
         this.locationNote.setText(String.valueOf(spot.getLocationNote()));
