@@ -12,15 +12,16 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/addLog"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/spotImage"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
+            android:layout_height="200dp"
             android:contentDescription="CampImage"
             android:scaleType="fitXY"
             tools:srcCompat="@tools:sample/backgrounds/scenic" />
@@ -43,7 +44,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="Accessibilité"
-                    android:textColor="#ffffff"/>
+                    android:textColor="#ffffff" />
 
                 <TextView
                     android:id="@+id/accessibilityDisplay"
@@ -51,9 +52,9 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="0"
+                    android:textColor="@color/noteColor"
                     android:textSize="36sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/noteColor"/>
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <LinearLayout
@@ -68,7 +69,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="Emplacement"
-                    android:textColor="#ffffff"/>
+                    android:textColor="#ffffff" />
 
                 <TextView
                     android:id="@+id/locationDisplay"
@@ -76,9 +77,9 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="0"
+                    android:textColor="@color/noteColor"
                     android:textSize="36sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/noteColor"/>
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <LinearLayout
@@ -93,7 +94,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="Commodités"
-                    android:textColor="#ffffff"/>
+                    android:textColor="#ffffff" />
 
                 <TextView
                     android:id="@+id/utilitiesDisplay"
@@ -101,9 +102,9 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="0"
+                    android:textColor="@color/noteColor"
                     android:textSize="36sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/noteColor"/>
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <LinearLayout
@@ -118,7 +119,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="Discrétion"
-                    android:textColor="#ffffff"/>
+                    android:textColor="#ffffff" />
 
                 <TextView
                     android:id="@+id/privacyDisplay"
@@ -126,9 +127,9 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="0"
+                    android:textColor="@color/noteColor"
                     android:textSize="36sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/noteColor"/>
+                    android:textStyle="bold" />
             </LinearLayout>
 
         </LinearLayout>
@@ -168,7 +169,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:layout_marginTop="4dp"
-            android:layout_weight="40"
             android:text="Derniers logs :"
             android:textSize="24sp" />
 
@@ -184,8 +184,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Ajouter un log"
-        app:layout_constraintBottom_toBottomOf="@+id/linearLayout4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
