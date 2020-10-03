@@ -55,6 +55,7 @@ public class AddLogActivity extends AppCompatActivity {
                     logToAdd.setNote((int)spotNote.getRating());
                     logToAdd.setRelatedSpot(relatedSpot);
 
+
                     LogRequester.sendLog(logToAdd, AddLogActivity.this, new RequestCallback<Response>() {
                         @Override
                         public void onDataReceived(Response response) throws JSONException {

@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import net.azilab.campCompanion.R;
 import net.azilab.campCompanion.model.Log;
 import net.azilab.campCompanion.model.Spot;
+import net.azilab.campCompanion.model.User;
 
 public class LogViewHolder extends RecyclerView.ViewHolder {
 
@@ -27,7 +28,12 @@ public class LogViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void updateWithLog(Log log){
-        this.userName.setText("User");
+        User user = log.getRelatedUser();
+        if(user == null) {
+            this.userName.setText("Unidentified");
+        } else {
+            this.userName.setText(user.getUsername());
+        }
         this.spotNote.setRating(log.getNote());
 
         this.logTxt.setText(log.getComment());

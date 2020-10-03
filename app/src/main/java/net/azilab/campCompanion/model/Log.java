@@ -12,6 +12,7 @@ public class Log implements Serializable {
     private String comment;
     private int note;
     private Spot relatedSpot;
+    private User relatedUser;
 
     // GETTERS AND SETTERS
     public int getId() {
@@ -46,18 +47,22 @@ public class Log implements Serializable {
         this.relatedSpot = relatedSpot;
     }
 
+    public User getRelatedUser() { return relatedUser;}
+
+    public void setRelatedUser(User relatedUser) { this.relatedUser = relatedUser;}
+
     public JSONObject toJSon() {
-        JSONObject spotJson = new JSONObject();
+        JSONObject logJson = new JSONObject();
         try {
-            spotJson.put("id", this.id);
-            spotJson.put("comment", this.comment);
-            spotJson.put("note", this.note);
-            spotJson.put("relatedSpot", this.relatedSpot.toJSon());
+            logJson.put("id", this.id);
+            logJson.put("comment", this.comment);
+            logJson.put("note", this.note);
+            logJson.put("relatedSpot", this.relatedSpot.toJSon());
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        return spotJson;
+        return logJson;
     }
 
 }

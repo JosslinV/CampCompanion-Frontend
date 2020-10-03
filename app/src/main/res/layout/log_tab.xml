@@ -23,7 +23,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="User"
-                android:textSize="30sp"
+                android:textSize="20sp"
                 android:textColor="#f0f0f0"
                 android:paddingLeft="10dp"/>
 
@@ -32,7 +32,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:numStars="5"
-                android:theme="@style/RatingBar"/>
+                android:theme="@style/RatingBar"
+                style="?android:attr/ratingBarStyleSmall"/>
         </LinearLayout>
 
         <TextView
