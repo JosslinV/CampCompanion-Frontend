@@ -18,6 +18,7 @@ import okhttp3.Response;
 public class AuthenticatorRequester {
 
     public static void requestAuthentication(Credential credential, final Activity activityCaller, final RequestCallback callback) {
+        //Connexion sans token, la requête souhaite en récupérer un
         AndroidNetworking.post("http://192.168.1.10:8080/api/authentication")
                 .setPriority(Priority.LOW)
                 .addHeaders("Content-Type", "application/json")

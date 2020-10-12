@@ -49,6 +49,7 @@ public class AddLogActivity extends AppCompatActivity {
         this.sendLog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //Vérifie que le Log contient un texte
                 if(!logTxt.getText().toString().equals("")) {
                     Log logToAdd = new Log();
                     logToAdd.setComment(logTxt.getText().toString());
@@ -59,7 +60,7 @@ public class AddLogActivity extends AppCompatActivity {
                     LogRequester.sendLog(logToAdd, AddLogActivity.this, new RequestCallback<Response>() {
                         @Override
                         public void onDataReceived(Response response) throws JSONException {
-                            Toast toast = Toast.makeText(AddLogActivity.this, "Log added with success", Toast.LENGTH_SHORT);
+                            Toast toast = Toast.makeText(AddLogActivity.this, "Log ajouté avec succès", Toast.LENGTH_SHORT);
                             toast.show();
                             finish();
                         }

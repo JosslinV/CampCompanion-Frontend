@@ -42,10 +42,13 @@ public class MapActivity extends AppCompatActivity {
     }
 
     private void initActivity() {
+        //Bouton ajouter spot
         this.addSpot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MapActivity.this, AddSpotActivity.class);
+                //Si l'utilisateur a placé un marqueur, ses coordonnées sont envoyés
+                //à la vue gérant l'ajout de spot
                 if(mapHelper.getSelectedMarker() != null) {
                     double markerLatitude =  mapHelper.getSelectedMarker().getPosition().latitude;
                     double markerLongitude =  mapHelper.getSelectedMarker().getPosition().longitude;
@@ -56,6 +59,7 @@ public class MapActivity extends AppCompatActivity {
             }
         });
 
+        //bouton rechercher spot
         this.searchSpot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,6 +68,7 @@ public class MapActivity extends AppCompatActivity {
             }
         });
 
+        //bouton effacer marqueur
         this.deleteMarker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

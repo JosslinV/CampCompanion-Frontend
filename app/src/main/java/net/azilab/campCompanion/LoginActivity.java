@@ -55,6 +55,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void authenticate() {
+        //Hash le password en MD5 (c'est mieux que rien...)
         String hashedPasswd =  hashPassword(password.getText().toString());
         Credential credential = new Credential(username.getText().toString(), hashedPasswd);
 

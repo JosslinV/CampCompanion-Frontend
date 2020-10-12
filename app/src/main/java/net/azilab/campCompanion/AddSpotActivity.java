@@ -73,23 +73,30 @@ public class AddSpotActivity extends AppCompatActivity {
     }
 
     private void addSpot() {
-        Spot newSpot = new Spot();
-        newSpot.setName(nameTxt.getText().toString());
-        newSpot.setLatitude(Double.parseDouble(latInput.getText().toString()));
-        newSpot.setLongitude(Double.parseDouble(longInput.getText().toString()));
+        //Vérifie que le spot possède au moins de son nom et des coordonnées
+        if(!nameTxt.getText().toString().equals("") && !latInput.getText().toString().equals("") &&  !longInput.getText().toString().equals("")) {
+            Spot newSpot = new Spot();
+            newSpot.setName(nameTxt.getText().toString());
+            newSpot.setLatitude(Double.parseDouble(latInput.getText().toString()));
+            newSpot.setLongitude(Double.parseDouble(longInput.getText().toString()));
 
-        newSpot.setAccessibilityNote(accessibilityBar.getProgress() + 1);
-        newSpot.setLocationNote(locationBar.getProgress() + 1);
-        newSpot.setUtilitiesNote(utilitiesBar.getProgress() + 1);
-        newSpot.setPrivacyNote(privacyBar.getProgress() + 1);
+            newSpot.setAccessibilityNote(accessibilityBar.getProgress() + 1);
+            newSpot.setLocationNote(locationBar.getProgress() + 1);
+            newSpot.setUtilitiesNote(utilitiesBar.getProgress() + 1);
+            newSpot.setPrivacyNote(privacyBar.getProgress() + 1);
 
-        SpotRequester.sendSpot(newSpot, AddSpotActivity.this, new RequestCallback<Response>() {
-            @Override
-            public void onDataReceived(Response response) throws JSONException {
-                Toast toast = Toast.makeText(AddSpotActivity.this, "Spot added with success", Toast.LENGTH_SHORT);
-                toast.show();
-                finish();
-            }
-        });
+            SpotRequester.sendSpot(newSpot, AddSpotActivity.this, new RequestCallback<Response>() {
+                @Override
+                public void onDataReceived(Response response) throws JSONException {
+                    Toast toast = Toast.makeText(AddSpotActivity.this, "Spot added with success", Toast.LENGTH_SHORT);
+                    toast.show();
+                    finish();
+                }
+            });
+        } else {
+            Toast toast = Toast.makeText(AddSpotActivity.this, "Veuillez saisir un nom et les coordonnées du spot", Toast.LENGTH_SHORT);
+            toast.show();
+        }
+
     }
 }

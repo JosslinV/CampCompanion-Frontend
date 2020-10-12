@@ -27,6 +27,7 @@ public class ShowSpotActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
+        //Zoom sur les coordonnées du spot
         Double latitude = this.getIntent().getDoubleExtra("spotLat", 0.0);
         Double longitude = this.getIntent().getDoubleExtra("spotLon", 0.0);
 

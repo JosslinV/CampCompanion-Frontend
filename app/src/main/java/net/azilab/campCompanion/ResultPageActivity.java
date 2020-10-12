@@ -32,6 +32,8 @@ public class ResultPageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.spot_result_view);
 
+        //Appelle une vue contenant uniquement une ligne correspondant au spot
+        //à afficher
         recyclerView = (RecyclerView) findViewById(R.id.spotResultRecycler);
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
@@ -39,6 +41,7 @@ public class ResultPageActivity extends AppCompatActivity {
 
         SpotRequest request = (SpotRequest) this.getIntent().getSerializableExtra("requestOptions");
 
+        //Envoi la requête et affiche les résultats avec les vues
         SpotRequester.searchSpot(request,this, new RequestCallback<JSONArray>() {
             @Override
             public void onDataReceived(JSONArray response) throws JSONException {

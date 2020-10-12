@@ -12,6 +12,7 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash_view);
 
+        //Affichage de l'image du splash screen pendant 3 sec
         Thread mThread = new Thread() {
             public void run() {
                 try {
@@ -29,9 +30,11 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void checkAuthentification() {
+        //Vérifie si un token est présent sur le téléphone
         if(getSharedPreferences("applicationPref", MODE_PRIVATE).contains("token")) {
             Intent intent = new Intent(SplashActivity.this, MapActivity.class);
             startActivity(intent);
+            //Sinon, demande à l'utilisateur de s'authentifier
         } else {
             Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
             startActivity(intent);

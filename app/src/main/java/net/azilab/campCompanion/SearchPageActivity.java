@@ -120,7 +120,7 @@ public class SearchPageActivity extends AppCompatActivity {
                 request.setLocationLongitude(1.277888);
                 request.setLocationLatitude(43.584376);
 
-                //Autour ville sélectionné
+            //Autour ville sélectionné
             } else if (this.locationGroup.getCheckedRadioButtonId() == R.id.aroundLocation) {
                 LatLng placeLocation = selectedPlace.getLatLng();
                 System.out.println(placeLocation);
@@ -133,6 +133,7 @@ public class SearchPageActivity extends AppCompatActivity {
             request.setUtilitiesNote(this.utilitiesBar.getProgress());
             request.setPrivacyNote(this.privacyBar.getProgress());
 
+            //C'est la vue résultat qui se charge d'envoyer la requête de recherche
             Intent intent = new Intent(this, ResultPageActivity.class);
             intent.putExtra("requestOptions", request);
             startActivity(intent);
