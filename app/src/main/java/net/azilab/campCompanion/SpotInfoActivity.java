@@ -72,9 +72,7 @@ public class SpotInfoActivity extends AppCompatActivity {
                 for(int i = 0; i < response.length(); i++) {
                     Log logToAdd = new Gson().fromJson(response.getJSONObject(i).toString(), Log.class);
                     lstOfLogs.add(logToAdd);
-                    System.out.println("pouet");
                 }
-                android.util.Log.println( android.util.Log.INFO, "hello","pouet pouet");
 
                 logAdapter = new LogAdapter(lstOfLogs, SpotInfoActivity.this);
                 logZone.setAdapter(logAdapter);

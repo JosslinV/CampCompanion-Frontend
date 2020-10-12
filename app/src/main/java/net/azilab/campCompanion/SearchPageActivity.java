@@ -70,10 +70,10 @@ public class SearchPageActivity extends AppCompatActivity {
 
     private void initPlaceFinder() {
         // updateTextViewVisibility(aroundLocation.isChecked());
-        String apiKey = getString(R.string.api_key);
-        if (!Places.isInitialized()) {
-            Places.initialize(getApplicationContext(), apiKey);
-        }
+//        String apiKey = getString(R.string.api_key);
+//        if (!Places.isInitialized()) {
+//            Places.initialize(getApplicationContext(), apiKey);
+//        }
 
         this.autocompleteFragment.setTypeFilter(TypeFilter.CITIES);
         this.autocompleteFragment.setCountry("FR");
@@ -112,12 +112,15 @@ public class SearchPageActivity extends AppCompatActivity {
     private void searchSpot() {
         try {
             final SpotRequest request = new SpotRequest();
+            //Autour utilisateur sélectionné
             if (this.locationGroup.getCheckedRadioButtonId() == R.id.aroundUser) {
-                Location location = LocationProvider.getPosition(this);
+                //Location location = LocationProvider.getPosition(this);
 
-                request.setLocationLongitude(location.getLongitude());
-                request.setLocationLatitude(location.getLatitude());
+                //TODO: Bouchon en attendant de résoudre bug location
+                request.setLocationLongitude(1.277888);
+                request.setLocationLatitude(43.584376);
 
+                //Autour ville sélectionné
             } else if (this.locationGroup.getCheckedRadioButtonId() == R.id.aroundLocation) {
                 LatLng placeLocation = selectedPlace.getLatLng();
                 System.out.println(placeLocation);
