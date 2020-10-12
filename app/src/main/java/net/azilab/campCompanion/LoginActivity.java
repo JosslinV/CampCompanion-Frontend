@@ -16,6 +16,8 @@ import net.azilab.campCompanion.model.Credential;
 import org.json.JSONException;
 
 import java.io.IOException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 import okhttp3.Response;
 
@@ -53,7 +55,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void authenticate() {
-        Credential credential = new Credential(username.getText().toString(), password.getText().toString());
+        String hashedPasswd =  hashPassword(password.getText().toString());
+        Credential credential = new Credential(username.getText().toString(), hashedPasswd);
 
         AuthenticatorRequester.requestAuthentication(credential, LoginActivity.this, new RequestCallback<Response>() {
             @Override
@@ -77,5 +80,28 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private String hashPassword(String clearPassword) {
+        // Create MessageDigest instance for MD5
+        MessageDigest md = null;
+        try {
+            md = MessageDigest.getInstance("MD5");
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        //Add password bytes to digest
+        md.update(clearPassword.getBytes());
+        //Get the hash's bytes
+        byte[] bytes = md.digest();
+        //This bytes[] has bytes in decimal format;
+        //Convert it to hexadecimal format
+        StringBuilder sb = new StringBuilder();
+        for(int i=0; i< bytes.length ;i++)
+        {
+            sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+        }
+        //Get complete hashed password in hex format
+        return sb.toString();
     }
 }
